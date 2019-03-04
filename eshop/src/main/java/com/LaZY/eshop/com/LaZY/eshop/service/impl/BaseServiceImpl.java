@@ -11,6 +11,11 @@ import java.util.List;
  */
 public abstract class BaseServiceImpl<T> implements BaseService<T> {
     private BaseDao<T> dao;
+
+    public void setDao(BaseDao<T> dao) {
+        this.dao = dao;
+    }
+
     public void saveEntity(T t) {
         dao.saveEntity(t);
     }

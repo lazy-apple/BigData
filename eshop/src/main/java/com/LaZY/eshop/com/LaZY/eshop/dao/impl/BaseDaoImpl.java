@@ -22,6 +22,11 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
         ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
         clazz = (Class)type.getActualTypeArguments()[0];
     }
+
+    public void setSf(SessionFactory sf) {
+        this.sf = sf;
+    }
+
     public void saveEntity(T t) {
         sf.getCurrentSession().save(t);
     }

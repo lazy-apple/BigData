@@ -18,4 +18,22 @@
         <property name="initialPoolSize" value="${c3p0.pool.size.ini}"/>
         <property name="acquireIncrement" value="${c3p0.pool.size.increment}"/>
     </bean>
+    <!-- hibernate会话工厂类 -->
+    <bean id="sf" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
+        <property name="dataSource" ref="dataSource" />
+        <!-- hibernate自身属性 -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+            </props>
+        </property>
+        <!--  映射文件位置 -->
+        <property name="mappingResources">
+            <list>
+                <value>User.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+
 </beans>
