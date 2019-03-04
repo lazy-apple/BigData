@@ -11,13 +11,13 @@ import java.util.List;
  * @author LaZY(李志一)
  * @create 2019-03-04 20:20
  */
-public abstract class BaseDaoIml<T> implements BaseDao<T> {
+public abstract class BaseDaoImpl<T> implements BaseDao<T> {
     //连接池
     private SessionFactory sf;
     //接受T的具体类型
     private Class<T> clazz;
 
-    public BaseDaoIml(){
+    public BaseDaoImpl(){
         //取得子类的泛型超类
         ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
         clazz = (Class)type.getActualTypeArguments()[0];

@@ -14,6 +14,6 @@ public interface BaseDao<T> {
     public void deleteEntity(T t);
     public T getEntity(T t);
 
-    public List<T> findByHQL();
+    public List<T> findByHQL(String hql,Object... objects);
     public void execHQL(String hql,Object... objects);
 }
