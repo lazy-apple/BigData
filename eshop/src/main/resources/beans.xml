@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -15,10 +16,38 @@
             http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
             http://www.springframework.org/schema/aop
             http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+    <!-- 配置spring扫描的包,自动管理需要的bean对象 -->
+    <context:component-scan base-package="com.LaZY.eshop.dao.impl,com.LaZY.eshop.service.impl" />
+
+    <!-- aop配置 -->
+    <aop:config>
+        <!-- 切入点 -->
+        <aop:pointcut id="txPoint" expression="execution(* com.LaZY.eshop.service.*Service.*(..))" />
+        <!-- 切入点通知 -->
+        <aop:advisor advice-ref="txAdvice"  pointcut-ref="txPoint"/>
+    </aop:config>
+
+    <!-- 事务通知 -->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT"/>
+            <tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" />
+            <tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" />
+            <tx:method name="exec*" propagation="REQUIRED" isolation="DEFAULT" />
+
+            <tx:method name="find*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
+            <tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
+
+            <tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" />
+        </tx:attributes>
+    </tx:advice>
+
     <!-- 指定外部文件的位置 -->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties" />
     </bean>
+
     <!-- c3p0数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driverclass}" />
@@ -31,6 +60,7 @@
         <property name="initialPoolSize" value="${c3p0.pool.size.ini}"/>
         <property name="acquireIncrement" value="${c3p0.pool.size.increment}"/>
     </bean>
+
     <!-- hibernate会话工厂类 -->
     <bean id="sf" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
         <property name="dataSource" ref="dataSource" />
@@ -47,33 +77,10 @@
                 <value>User.hbm.xml</value>
             </list>
         </property>
-
     </bean>
+
     <!-- hibernate事务管理器 -->
     <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sf" />
     </bean>
-    <!-- 事务通知 -->
-    <tx:advice id="txAdvice" transaction-manager="txManager">
-        <tx:attributes>
-            <tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT"/>
-            <tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" />
-            <tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" />
-            <tx:method name="exec*" propagation="REQUIRED" isolation="DEFAULT" />
-
-            <tx:method name="find*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
-            <tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
-
-            <tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" />
-        </tx:attributes>
-    </tx:advice>
-    <!-- aop配置 -->
-    <aop:config>
-        <!-- 切入点 -->
-        <aop:pointcut id="txPoint" expression="execution(* com.LaZY.eshop.com.LaZY.eshop.service.*Service.*(..))" />
-        <!-- 切入点通知 -->
-        <aop:advisor advice-ref="txAdvice"  pointcut-ref="txPoint"/>
-    </aop:config>
-    <!-- 配置spring扫描的包,自动管理需要的bean对象 -->
-    <context:component-scan base-package="com.LaZY.eshop.com.LaZY.eshop.dao.impl,com.LaZY.eshop.com.LaZY.eshop.service.impl" />
 </beans>
