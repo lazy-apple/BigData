@@ -1,6 +1,7 @@
 package com.LaZY.eshop;
 
 import com.LaZY.eshop.model.User;
+import com.LaZY.eshop.service.UserService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
