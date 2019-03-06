@@ -5,10 +5,12 @@ import com.LaZY.eshop.model.User;
 import com.LaZY.eshop.service.UserService;
 import com.LaZY.eshop.service.impl.UserServiceImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -42,19 +44,33 @@ public class UserController {
         return "login";
     }
 
+    /***
+     * 跳转到登录也
+     * @return
+     */
     @RequestMapping(value = "toLogin",method = RequestMethod.GET)
     public String toLogin(){
         return "login";
     }
+
+    /**
+     * 处理登录信息
+     * @param user
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
-    public String doLogin(User user){
+    public String doLogin(User user, HttpSession session,Model m){
         String sql = "from User u where u.name = ? and u.password = ?";
         List<User> list = us.findByHQL(sql,user.getName(),user.getPassword());
         if (list == null || list.isEmpty()){
-
+            m.addAttribute("error","用户名、密码错误");
         }else {
+            //name 存放在session中
+            User u = list.get(0);
+            session.setAttribute("name",u.getName());
             System.out.println("----------登录成功---------");
         }
-        return "success";
+        return "index";
     }
 }

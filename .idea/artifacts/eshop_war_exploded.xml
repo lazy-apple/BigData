@@ -35,6 +35,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.3.RELEASE" />
           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="eshop/web/Web" />
