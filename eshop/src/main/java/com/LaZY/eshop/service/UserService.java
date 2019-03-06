@@ -8,5 +8,10 @@ import org.springframework.stereotype.Service;
  */
 
 public interface UserService extends  BaseService<User>{
-
+    /***
+     * 验证邮箱
+     * @param email
+     * @return
+     */
+    public boolean isRegisted(String email);
 }

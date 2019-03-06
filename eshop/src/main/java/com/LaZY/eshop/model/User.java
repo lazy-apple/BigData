@@ -10,6 +10,24 @@ public class User {
     private String name ;
     private String password ;
     private Date regDate ;
+    private String email;
+    private String nickName;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
     public Integer getId() {
         return id;
@@ -41,5 +59,17 @@ public class User {
 
     public void setRegDate(Date regDate) {
         this.regDate = regDate;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", regDate=" + regDate +
+                ", email='" + email + '\'' +
+                ", nickName='" + nickName + '\'' +
+                '}';
     }
 }

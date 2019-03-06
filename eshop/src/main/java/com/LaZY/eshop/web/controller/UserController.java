@@ -4,12 +4,15 @@ import com.LaZY.eshop.dao.impl.UserDaoImpl;
 import com.LaZY.eshop.model.User;
 import com.LaZY.eshop.service.UserService;
 import com.LaZY.eshop.service.impl.UserServiceImpl;
+import com.LaZY.eshop.util.ValidateUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -34,13 +37,25 @@ public class UserController {
 
     /***
      * 完成注册，存入数据库
-     * @param user 表单信息
+     * @param user
+     * @param req
+     * @param m
      * @return
      */
     @RequestMapping(value = "/doReg",method = RequestMethod.POST)
-    public String doReg(User user){
+    public String doReg(User user,HttpServletRequest req,Model m){
+        String confirmPass = req.getParameter("confirmPass");
+        String email = user.getEmail();
+        if(!(user.getPassword().equals(confirmPass))){
+            m.addAttribute("error.password.nosame","两次密码输入不一致，确认后请重新输入!!");
+            return "userReg";
+        }
+        if(us.isRegisted(email)){
+            m.addAttribute("error.email.registed","邮箱已被注册!!");
+            return "userReg";
+        }
         us.saveEntity(user);
-        System.out.println("---------regest-success----------");
+        System.out.println("---------regest-finish----------");
         return "login";
     }
 
