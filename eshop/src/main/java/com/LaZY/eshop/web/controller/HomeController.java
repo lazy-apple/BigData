@@ -10,13 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-    public HomeController() {
-        System.out.println("——————————HomeController——————");
-    }
 
     @RequestMapping(value = "/home")
     public String toHome(){
-        System.out.println("-----home--------------");
         return  "index";
     }
 

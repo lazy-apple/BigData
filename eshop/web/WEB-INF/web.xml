@@ -9,9 +9,9 @@
         <param-value>classpath:beans.xml</param-value>
     </context-param>
     <!--bean容器 监听器-->
-    <!--<listener>-->
-    <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
-    <!--</listener>-->
+    <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
     <!-- 配置Spring的分发器控制器-->
     <servlet>
