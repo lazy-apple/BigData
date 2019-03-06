@@ -43,10 +43,28 @@ public class AdminController {
         //重定向到新的url地址
         return "redirect:/admin/userList";
     }
+
+    /***
+     * 查看用户信息
+     * @param uid
+     * @param m
+     * @return
+     */
     @RequestMapping(value="/admin/viewUser",method = RequestMethod.GET)
     public String viewUser(@RequestParam("uid") int uid,Model m){
         User u = us.getEntity(uid);
         m.addAttribute("user",u);
         return "/viewUser";
+    }
+
+    /***
+     * 修改用户信息
+     * @param u
+     * @return
+     */
+    @RequestMapping(value="/admin/updateUser",method = RequestMethod.POST)
+    public String updateUser(User u){
+        us.updateEntity(u);
+        return "redirect:/admin/userList";
     }
 }
