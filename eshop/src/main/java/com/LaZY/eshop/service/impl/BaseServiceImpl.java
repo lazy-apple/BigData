@@ -3,6 +3,7 @@ package com.LaZY.eshop.service.impl;
 import com.LaZY.eshop.dao.BaseDao;
 import com.LaZY.eshop.service.BaseService;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
@@ -11,6 +12,11 @@ import java.util.List;
 public abstract class BaseServiceImpl<T> implements BaseService<T> {
 
     private BaseDao<T> dao ;
+    private Class clazz;
+    public BaseServiceImpl() {
+        ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
+        clazz = (Class) type.getActualTypeArguments()[0];
+    }
 
     public BaseDao<T> getDao() {
         return dao;
@@ -46,5 +52,15 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 
     public void execHQL(String hql, Object... objects) {
         dao.execHQL(hql,objects);
+    }
+
+    /***
+     * 查找所有实体，表的所有信息
+     * @return
+     */
+    public List<T> findAllEntities() {
+        String hql = "from " + clazz.getSimpleName();
+        System.out.println(hql);//test
+        return this.findByHQL(hql);
     }
 }

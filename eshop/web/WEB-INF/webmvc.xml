@@ -20,7 +20,7 @@
 
     <!-- 内部资源视图解析器(解析的是jsp的路径) -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="./jsps/"/>
+        <property name="prefix" value="/jsps/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 </beans>

@@ -55,7 +55,7 @@ public class UserController {
             return "userReg";
         }
         us.saveEntity(user);
-        System.out.println("---------regest-finish----------");
+        System.out.println("---------regest-finish----------");//log
         return "login";
     }
 
@@ -84,7 +84,7 @@ public class UserController {
             //name 存放在session中
             User u = list.get(0);
             session.setAttribute("name",u.getName());
-            System.out.println("----------登录成功---------");
+            System.out.println("----------登录成功---------");//log
         }
         return "index";
     }

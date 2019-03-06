@@ -1,5 +1,7 @@
 package com.LaZY.eshop.service;
 
+import com.LaZY.eshop.model.User;
+
 import java.util.List;
 
 /**
@@ -20,4 +22,6 @@ public interface BaseService<T> {
     public List<T> findByHQL(String hql, Object... objects);
 
     public void execHQL(String hql, Object... objects);
+
+    public List<T> findAllEntities();
 }

@@ -16,6 +16,7 @@ import java.util.List;
 @Service("userService")
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 
+
     /**
      * 重新该方法，需要注入指定的UserDao对象
      */
@@ -29,4 +30,5 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         List<User> list = this.findByHQL(hql,email);
         return ValidateUtil.isValid(list) ;
     }
+
 }
