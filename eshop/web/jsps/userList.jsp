@@ -14,6 +14,8 @@
         <td>email</td>
         <td>regDate</td>
         <td>删除</td>
+        <td>查看</td>
+        <td>编辑</td>
     </tr>
     <c:forEach items="${allUsers}" var="u">
         <tr>
@@ -23,9 +25,10 @@
             <td><c:out value="${u.nickName}" /></td>
             <td><c:out value="${u.email}" /></td>
             <td><c:out value="${u.regDate}" /></td>
-            <td><a href="/admin/delUser?uid=<c:out value="${u.id}"/>">删除</a></td>
-            <td><a href="/admin/viewUser?uid=<c:out value="${u.id}"/>">查看</a></td>
-            <td><a href="/admin/editUser?uid=<c:out value="${u.id}"/>">编辑</a></td>
+
+            <td><a href="<c:out value='/admin/delUser'/>?uid=<c:out value='${u.id}'/>">删除</a></td>
+            <td><a href="<c:out value='/admin/viewUser'/>?uid=<c:out value='${u.id}'/>">查看</a></td>
+            <td><a href="<c:out value='/admin/editUser'/>?uid=<c:out value='${u.id}'/>">编辑</a></td>
         </tr>
     </c:forEach>
 </table>

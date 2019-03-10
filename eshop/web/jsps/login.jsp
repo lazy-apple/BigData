@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: LaZY
@@ -11,7 +12,7 @@
     <title>login</title>
 </head>
 <body>
-<form action="/doLogin" method="post">
+<form action="<c:out value='/doLogin'/>" method="post">
     用户名：<input type="text" name="name"><br>
     密码：  <input type="password" name="password"><br>
     <input type="submit" value="登录">

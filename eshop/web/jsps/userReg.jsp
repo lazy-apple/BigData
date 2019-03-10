@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="/doReg" method="post">
+    <form action="<c:out value='/doReg'/>" method="post">
         用户名：    <input type="text" name="name"><br>
         密码：      <input type="password" name="password"><br>
         确认密码：  <input type="password" name="confirmPass"><c:out value="${requestScope['error.password.nosame']}"/><br>
