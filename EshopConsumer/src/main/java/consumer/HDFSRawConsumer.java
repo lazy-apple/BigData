@@ -61,20 +61,20 @@ public class HDFSRawConsumer {
             while (consumerIte.hasNext()) {
                 byte[] msg = consumerIte.next().message();
                 System.out.println(new String(msg));
-//                String log = new String(msg) ;
-//                String[] arr = StringUtil.splitLog(log);
-//                if(arr == null || arr.length < 10){
-//                    continue ;
-//                }
-//                //主机名
-//                String hostname = StringUtil.getHostname(arr);
-//                //日期串
-//                String dateStr = StringUtil.formatYyyyMmDdHhMi(arr);
-//                //path
-//                String rawPath = "/user/centos/eshop/raw/" + dateStr + "/" + hostname + ".log";
-//                //写入数据到hdfs
+                String log = new String(msg) ;
+                String[] arr = StringUtil.splitLog(log);
+                if(arr == null || arr.length < 10){
+                    continue ;
+                }
+                //主机名
+                String hostname = StringUtil.getHostname(arr);
+                //日期串
+                String dateStr = StringUtil.formatYyyyMmDdHhMi(arr);
+                //path
+                String rawPath = "/user/centos/eshop/raw/" + dateStr + "/" + hostname + ".log";
+                //写入数据到hdfs
 //                System.out.println(log);
-//                writer.writeLog2HDFS(rawPath, msg);
+                writer.writeLog2HDFS(rawPath, msg);
             }
         }
     }
