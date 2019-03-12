@@ -26,9 +26,9 @@
             <td><c:out value="${u.email}" /></td>
             <td><c:out value="${u.regDate}" /></td>
 
-            <td><a href="<c:out value='/admin/delUser'/>?uid=<c:out value='${u.id}'/>">删除</a></td>
-            <td><a href="<c:out value='/admin/viewUser'/>?uid=<c:out value='${u.id}'/>">查看</a></td>
-            <td><a href="<c:out value='/admin/editUser'/>?uid=<c:out value='${u.id}'/>">编辑</a></td>
+            <td><a href="<c:url value='/admin/delUser'/>?uid=<c:out value='${u.id}'/>">删除</a></td>
+            <td><a href="<c:url value='/admin/viewUser'/>?uid=<c:out value='${u.id}'/>">查看</a></td>
+            <td><a href="<c:url value='/admin/editUser'/>?uid=<c:out value='${u.id}'/>">编辑</a></td>
         </tr>
     </c:forEach>
 </table>

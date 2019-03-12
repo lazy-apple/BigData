@@ -5,7 +5,7 @@
     <title>editUser.jsp</title>
 </head>
 <body>
-<form action="<c:out value='/admin/updateUser' />" method="post">
+<form action="<c:url value='/admin/updateUser' />" method="post">
     <input type="hidden" name="id" value="<c:out value="${user.id}" />">
     Username :<input type="text" name="name" value="<c:out value="${user.name}" />"><br>
     Password :<input type="password" name="password" value="<c:out value="${user.password}" />"><c:out value="${requestScope['error.password.nosame']}"/><br>

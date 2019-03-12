@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BigData.iml" filepath="$PROJECT_DIR$/BigData.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EshopConsumer/EshopConsumer.iml" filepath="$PROJECT_DIR$/EshopConsumer/EshopConsumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/eshop/eshop.iml" filepath="$PROJECT_DIR$/eshop/eshop.iml" />
     </modules>
   </component>
