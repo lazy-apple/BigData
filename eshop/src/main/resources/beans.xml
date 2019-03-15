@@ -75,6 +75,7 @@
         <property name="mappingResources">
             <list>
                 <value>User.hbm.xml</value>
+                <value>Stat.hbm.xml</value>
             </list>
         </property>
     </bean>
